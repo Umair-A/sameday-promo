@@ -50,6 +50,7 @@ body {
     background-size: contain;
     padding: 20px 0;
     position: relative;
+    min-width: 100%;
 }
 
 .hero-overlay {
@@ -94,8 +95,8 @@ body {
 /* Quote Form Section */
 .section-title {
     font-size: 46px;
-    margin-bottom: 0.5rem;
-    padding: 10px;
+    /* margin-bottom: 0.5rem;
+    padding: 10px; */
 }
 
 .section-title-3{
@@ -108,7 +109,7 @@ body {
 
 .section-underline {
     max-width: 100%;
-    height: auto;
+    /* height: auto; */
     width: 641px; /* default width for desktop */
 }
 
@@ -1229,11 +1230,6 @@ body {
 }
 
 /* Section Titles */
-.section-title {
-    font-size: 46px;
-    margin-bottom: 0.5rem;
-    padding: 10px;
-}
 
 .section-subtitle {
     font-size: 42px;
@@ -1272,7 +1268,7 @@ body {
 
 @media (max-width: 576px) {
     .section-title {
-        font-size: 28px;
+        font-size: 24px;
         padding: 5px;
     }
     .section-subtitle {
@@ -1389,7 +1385,7 @@ body {
         font-size: 48px;
     }
     .hero-subheading {
-        font-size: 24px;
+        font-size: 20px;
     }
     .hero-section {
         padding: 60px 0;
@@ -1403,7 +1399,7 @@ body {
         margin-bottom: 1rem !important;
     }
     .hero-subheading {
-        font-size: 22px;
+        font-size: 20px;
     }
     .hero-section {
         padding: 50px 0;
@@ -1536,4 +1532,90 @@ body {
 
 .warning-icon-large {
     font-size: 40px;
+}
+
+.custom-checkbox-card {
+    background: #f6f6f6;
+    border-radius: 8px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+    margin-right: 3px;
+}
+.custom-checkbox-card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    background-color: #1156a7;
+}
+
+.custom-checkbox-card:hover .form-check-label,
+.custom-checkbox-card:hover .bi-info-circle {
+    color: white;
+}
+
+
+.custom-checkbox-card .form-check-input {
+    width: 28px;
+    height: 28px;
+    margin-right: 12px;
+    margin-left: 1px;
+    border: 2px solid #1566b1;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+}
+.custom-checkbox-card .form-check-input:checked {
+    background-color: #1566b1;
+    border-color: #1566b1;
+}
+.custom-checkbox-card .form-check-label {
+    font-weight: bold;
+    color: #1566b1;
+    font-size: 1.25rem;
+    margin-bottom: 0;
+}
+.custom-checkbox-card .bi-info-circle {
+    color: #1566b1;
+    font-size: 1.2rem;
+    margin-left: 10px;
+}
+
+.large-checkbox .form-check-input {
+    width: 23px;
+    height: 23px;
+    margin-right: 12px;
+    border: 1px solid #1156a7;
+    border-radius: 4px;
+}
+
+.large-checkbox .form-check-label {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #1156a7;
+}
+
+
+.large-textarea {
+    min-height: 170px !important;
+    font-size: 1.1rem;
+    padding: 1rem;
+    resize: vertical; /* Allows user to resize if needed */
+}
+
+.uk-non-standard-economy .uk-non-standard-hidden {
+    display: none !important;
+}
+
+/* Hide specific country options */
+.uk-non-standard-economy #collection-country option[value="us"],
+.uk-non-standard-economy #collection-country option[value="ca"] {
+    display: none !important;
+}
+
+/* If you have delivery country dropdown as well */
+.uk-non-standard-economy #delivery-country option[value="us"],
+.uk-non-standard-economy #delivery-country option[value="ca"] {
+    display: none !important;
 }

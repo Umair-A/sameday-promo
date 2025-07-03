@@ -91,7 +91,7 @@
     <section class="quote-form-section py-5">
         <div class="container">
             <div class="text-center py-5 mb-4">
-                <h2 class="section-title fw-semibold">One Quick Form. One Fast Reply</h2>
+                <h4 class="section-title fw-semibold">One Quick Form. One Fast Reply</h4>
                 <h3 class="section-subtitle fw-bold">One Reliable Delivery Solution.</h3>
                 <img src="images/Vector.png" alt="underline" class="section-underline mx-auto d-block img-fluid">
             </div>
@@ -259,14 +259,16 @@
                                 <div class="alert-warning d-flex align-items-center" role="alert">
                                     <i class="bi bi-exclamation-triangle-fill warning-icon-large me-2"></i>
                                     <div>
-                                        This service cannot be booked for journeys involving ferry travel. Please choose our Time Critical Courier service to obtain a quote for these deliveries. If you are unsure, please call Customer Services at 0800 999 1010.
+                                        This service cannot be booked for journeys involving ferry travel. Please choose
+                                        our Time Critical Courier service to obtain a quote for these deliveries. If you
+                                        are unsure, please call Customer Services at 0800 999 1010.
                                     </div>
                                 </div>
                             </div>
 
                             <div id="palletServiceDetails" style="display: none;" class="mt-4">
                                 <div class="row">
-                                     <!-- Warning Message -->
+                                    <!-- Warning Message -->
                                     <!-- <div class="col-12">
                                         <div class=" alert-warning d-flex align-items-center" role="alert">
                                             <i class="bi bi-exclamation-triangle-fill me-2"></i>
@@ -306,26 +308,30 @@
                                             <option value="saturday">Saturday (Friday Collection)</option>
                                         </select>
                                     </div>
-                                   <div class="col-12 mt-2">
-                                        <div class="d-flex gap-4">
-                                            <div class="form-check" id="residential-collection-wrapper" style="display: none;">
-                                                <input class="form-check-input" type="checkbox" id="residential-collection">
+                                    <div class="col-12 mt-2">
+
+                                        <div class="row">
+                                            <div class="form-check col-md-4 custom-checkbox-card"
+                                                id="residential-collection-wrapper" style="display: none;">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="residential-collection">
                                                 <label class="form-check-label" for="residential-collection">
                                                     Residential Collection
                                                 </label>
-                                                <i class="bi bi-info-circle ms-2" 
-                                                    data-bs-toggle="tooltip" 
-                                                    data-bs-placement="top" 
+                                                <i class="bi bi-info-circle ms-2" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top"
                                                     title="Collection from a residential address"></i>
                                             </div>
-                                            <div class="form-check" id="residential-delivery-wrapper" style="display: none;">
-                                                <input class="form-check-input" type="checkbox" id="residential-delivery">
+
+                                            <div class="form-check col-md-4 custom-checkbox-card"
+                                                id="residential-delivery-wrapper" style="display: none;">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="residential-delivery">
                                                 <label class="form-check-label" for="residential-delivery">
                                                     Residential Delivery
                                                 </label>
-                                                <i class="bi bi-info-circle ms-2" 
-                                                    data-bs-toggle="tooltip" 
-                                                    data-bs-placement="top" 
+                                                <i class="bi bi-info-circle ms-2" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top"
                                                     title="Delivery to a residential address"></i>
                                             </div>
                                         </div>
@@ -344,7 +350,66 @@
 
                             <div id="internationalDocsTarifDetails" style="display: none;" class="mt-4">
                                 <div class="row">
-                                     <!-- Warning Message -->
+                                    <!-- Warning Message -->
+                                    <!-- <div class="col-12">
+                                        <div class=" alert-warning d-flex align-items-center" role="alert">
+                                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                            <div>
+                                                This service cannot be booked for journeys involving ferry travel. Please choose our Time Critical Courier service to obtain a quote for these deliveries. If you are unsure, please call Customer Services at 0800 999 1010.
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                                    <!-- Tariff Type Dropdown -->
+                                    <div class="col-md-8 mb-3">
+                                        <label for="tariff-type" class="form-label fw-bold">Tariff type*</label>
+                                        <select class="form-select" id="tariff-type-international" required>
+                                            <option value="" selected disabled>Select tariff type</option>
+                                            <option value="express">Express</option>
+                                            <option value="economy">Economy</option>
+                                            <option value="express-12">Express pre 12</option>
+                                            <option value="express-9">Express pre 9</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12 mt-2">
+                                        <div class="d-flex gap-4">
+                                            <div class="form-check custom-checkbox-card">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="residential-collection">
+                                                <label class="form-check-label" for="residential-collection">
+                                                    Residential Collection
+                                                </label>
+                                                <i class="bi bi-info-circle ms-2" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top"
+                                                    title="Collection from a residential address"></i>
+                                            </div>
+                                            <div class="form-check custom-checkbox-card">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="residential-delivery">
+                                                <label class="form-check-label" for="residential-delivery">
+                                                    Residential Delivery
+                                                </label>
+                                                <i class="bi bi-info-circle ms-2" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top"
+                                                    title="Delivery to a residential address"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Additional Details -->
+                                    <div class="col-12">
+                                        <div class="tariff-details mt-2" id="dynamic-tariff-details-international">
+                                            <div id="tariff-content-international">
+                                                <!-- Dynamic content will be inserted here -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="internationalTariffServiceDetails" style="display: none;" class="mt-4">
+                                <div class="row">
+                                    <!-- Warning Message -->
                                     <!-- <div class="col-12">
                                         <div class=" alert-warning d-flex align-items-center" role="alert">
                                             <i class="bi bi-exclamation-triangle-fill me-2"></i>
@@ -357,65 +422,6 @@
                                     <!-- Tariff Type Dropdown -->
                                     <div class="col-md-4 mb-3">
                                         <label for="tariff-type" class="form-label fw-bold">Tariff type*</label>
-                                        <select class="form-select" id="tariff-type-international" required>
-                                            <option value="" selected disabled>Select tariff type</option>
-                                            <option value="express">Express</option>
-                                            <option value="economy">Economy</option>
-                                            <option value="express-12">Express pre 12</option>
-                                            <option value="express-9">Express pre 9</option>
-                                        </select>
-                                    </div>
-                                   <div class="col-12 mt-2">
-                                        <div class="d-flex gap-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="residential-collection">
-                                                <label class="form-check-label" for="residential-collection">
-                                                    Residential Collection
-                                                </label>
-                                                <i class="bi bi-info-circle ms-2" 
-                                                    data-bs-toggle="tooltip" 
-                                                    data-bs-placement="top" 
-                                                    title="Collection from a residential address"></i>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="residential-delivery">
-                                                <label class="form-check-label" for="residential-delivery">
-                                                    Residential Delivery
-                                                </label>
-                                                <i class="bi bi-info-circle ms-2" 
-                                                    data-bs-toggle="tooltip" 
-                                                    data-bs-placement="top" 
-                                                    title="Delivery to a residential address"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Additional Details -->
-                                    <div class="col-12">
-                                         <div class="tariff-details mt-2" id="dynamic-tariff-details-international">
-                                            <div id="tariff-content-international">
-                                                <!-- Dynamic content will be inserted here -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                             <div id="internationalTariffServiceDetails" style="display: none;" class="mt-4">
-                                <div class="row">
-                                     <!-- Warning Message -->
-                                    <!-- <div class="col-12">
-                                        <div class=" alert-warning d-flex align-items-center" role="alert">
-                                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                                            <div>
-                                                This service cannot be booked for journeys involving ferry travel. Please choose our Time Critical Courier service to obtain a quote for these deliveries. If you are unsure, please call Customer Services at 0800 999 1010.
-                                            </div>
-                                        </div>
-                                    </div> -->
-
-                                    <!-- Tariff Type Dropdown -->
-                                    <div class="col-md-6 mb-3">
-                                        <label for="tariff-type"  class="form-label fw-bold">Tariff type*</label>
                                         <select class="form-select" id="tariff-type-international-freight" required>
                                             <option value="" selected disabled>Select tariff type</option>
                                             <option value="air-freight">Air Freight</option>
@@ -423,44 +429,46 @@
                                             <option value="sea-freight">Sea Freight</option>
                                         </select>
                                     </div>
-                                      <!-- Destination Dropdown -->
-                                    <div class="col-md-6 mb-3">
+                                    <!-- Destination Dropdown -->
+                                    <div class="col-md-4 mb-3">
                                         <label for="destination" class="form-label fw-bold">Transfer Type*</label>
                                         <select class="form-select" id="destination" required>
-                                            <option value=""  disabled>Select an option</option>
+                                            <option value="" disabled>Select an option</option>
                                             <option value="uk" selected>Door to Door</option>
                                             <option value="ni">Door to Airport</option>
                                             <option value="si">Airport to Airport</option>
                                         </select>
                                     </div>
-                                   <div class="col-12 mt-2">
-                                        <div class="d-flex gap-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="residential-collection">
-                                                <label class="form-check-label" for="residential-collection">
-                                                    Residential Collection
-                                                </label>
-                                                <i class="bi bi-info-circle ms-2" 
-                                                    data-bs-toggle="tooltip" 
-                                                    data-bs-placement="top" 
-                                                    title="Collection from a residential address"></i>
+                                    <div class="col-12 mt-2">
+                                        <div class="row g-3">
+                                            <div class="col-12 col-sm-6 col-md-4">
+                                                <div class="form-check custom-checkbox-card">
+                                                    <input class="form-check-input" type="checkbox" id="residential-collection">
+                                                    <label class="form-check-label" for="residential-collection">
+                                                        Residential Collection
+                                                    </label>
+                                                    <i class="bi bi-info-circle ms-2" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top"
+                                                        title="Collection from a residential address"></i>
+                                                </div>
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="residential-delivery">
-                                                <label class="form-check-label" for="residential-delivery">
-                                                    Residential Delivery
-                                                </label>
-                                                <i class="bi bi-info-circle ms-2" 
-                                                    data-bs-toggle="tooltip" 
-                                                    data-bs-placement="top" 
-                                                    title="Delivery to a residential address"></i>
+                                            <div class="col-12 col-sm-6 col-md-4">
+                                                <div class="form-check custom-checkbox-card">
+                                                    <input class="form-check-input" type="checkbox" id="residential-delivery">
+                                                    <label class="form-check-label" for="residential-delivery">
+                                                        Residential Delivery
+                                                    </label>
+                                                    <i class="bi bi-info-circle ms-2" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top"
+                                                        title="Delivery to a residential address"></i>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- Additional Details -->
-                                     <div class="col-12">
-                                         <div class="tariff-details mt-2" id="dynamic-tariff-details-international">
+                                    <div class="col-12">
+                                        <div class="tariff-details mt-2" id="dynamic-tariff-details-international">
                                             <div id="tariff-content-international-freight">
                                                 <!-- Dynamic content will be inserted here -->
                                             </div>
@@ -472,7 +480,7 @@
 
                         <!-- Step 2: Vehicle Selection -->
                         <div class="form-step" id="step2">
-                            
+
 
                             <!-- Vehicle Selection Form (for Time-Critical Courier) -->
                             <div id="vehicleSelectionForm" style="display: none;">
@@ -485,9 +493,11 @@
                                             <div class="vehicle-card">
                                                 <div class="d-flex justify-content-between mb-2">
                                                     <span class="vehicle-name">Small Van
-                                                        <span class="selected-badge-van"><i class="fas fa-check"></i></span>
+                                                        <span class="selected-badge-van"><i
+                                                                class="fas fa-check"></i></span>
                                                     </span>
-                                                    <span class="info-icon"><i class="fas fa-ellipsis-vertical"></i></span>
+                                                    <span class="info-icon"><i
+                                                            class="fas fa-ellipsis-vertical"></i></span>
                                                 </div>
                                                 <div class="vehicle-image">
                                                     <img src="images/vehicles/small-van.png" alt="Small Van"
@@ -503,9 +513,11 @@
                                             <div class="vehicle-card">
                                                 <div class="d-flex justify-content-between mb-2">
                                                     <span class="vehicle-name">Transit Van
-                                                        <span class="selected-badge-van"><i class="fas fa-check"></i></span>
+                                                        <span class="selected-badge-van"><i
+                                                                class="fas fa-check"></i></span>
                                                     </span>
-                                                    <span class="info-icon"><i class="fas fa-ellipsis-vertical"></i></span>
+                                                    <span class="info-icon"><i
+                                                            class="fas fa-ellipsis-vertical"></i></span>
                                                 </div>
                                                 <div class="vehicle-image">
                                                     <img src="images/vehicles/transit-van.png" alt="Transit Van"
@@ -521,9 +533,11 @@
                                             <div class="vehicle-card">
                                                 <div class="d-flex justify-content-between mb-2">
                                                     <span class="vehicle-name">LWB Transit
-                                                        <span class="selected-badge-van"><i class="fas fa-check"></i></span>
+                                                        <span class="selected-badge-van"><i
+                                                                class="fas fa-check"></i></span>
                                                     </span>
-                                                    <span class="info-icon"><i class="fas fa-ellipsis-vertical"></i></span>
+                                                    <span class="info-icon"><i
+                                                            class="fas fa-ellipsis-vertical"></i></span>
                                                 </div>
                                                 <div class="vehicle-image">
                                                     <img src="images/vehicles/lwb-van.png" alt="LWB Transit"
@@ -539,9 +553,11 @@
                                             <div class="vehicle-card">
                                                 <div class="d-flex justify-content-between mb-2">
                                                     <span class="vehicle-name">XLWB Transit
-                                                        <span class="selected-badge-van"><i class="fas fa-check"></i></span>
+                                                        <span class="selected-badge-van"><i
+                                                                class="fas fa-check"></i></span>
                                                     </span>
-                                                    <span class="info-icon"><i class="fas fa-ellipsis-vertical"></i></span>
+                                                    <span class="info-icon"><i
+                                                            class="fas fa-ellipsis-vertical"></i></span>
                                                 </div>
                                                 <div class="vehicle-image">
                                                     <img src="images/vehicles/xlwb-van.png" alt="XLWB Transit"
@@ -557,9 +573,11 @@
                                             <div class="vehicle-card">
                                                 <div class="d-flex justify-content-between mb-2">
                                                     <span class="vehicle-name">Luton Van
-                                                        <span class="selected-badge-van"><i class="fas fa-check"></i></span>
+                                                        <span class="selected-badge-van"><i
+                                                                class="fas fa-check"></i></span>
                                                     </span>
-                                                    <span class="info-icon"><i class="fas fa-ellipsis-vertical"></i></span>
+                                                    <span class="info-icon"><i
+                                                            class="fas fa-ellipsis-vertical"></i></span>
                                                 </div>
                                                 <div class="vehicle-image">
                                                     <img src="images/vehicles/luto-van.png" alt="Luton Van"
@@ -575,9 +593,11 @@
                                             <div class="vehicle-card">
                                                 <div class="d-flex justify-content-between mb-2">
                                                     <span class="vehicle-name">7.5t Lorry
-                                                        <span class="selected-badge-van"><i class="fas fa-check"></i></span>
+                                                        <span class="selected-badge-van"><i
+                                                                class="fas fa-check"></i></span>
                                                     </span>
-                                                    <span class="info-icon"><i class="fas fa-ellipsis-vertical"></i></span>
+                                                    <span class="info-icon"><i
+                                                            class="fas fa-ellipsis-vertical"></i></span>
                                                 </div>
                                                 <div class="vehicle-image">
                                                     <img src="images/vehicles/7.5t-van.png" alt="7.5t Lorry"
@@ -593,12 +613,15 @@
                                             <div class="vehicle-card">
                                                 <div class="d-flex justify-content-between mb-2">
                                                     <span class="vehicle-name">18t Lorry
-                                                        <span class="selected-badge-van"><i class="fas fa-check"></i></span>
+                                                        <span class="selected-badge-van"><i
+                                                                class="fas fa-check"></i></span>
                                                     </span>
-                                                    <span class="info-icon"><i class="fas fa-ellipsis-vertical"></i></span>
+                                                    <span class="info-icon"><i
+                                                            class="fas fa-ellipsis-vertical"></i></span>
                                                 </div>
                                                 <div class="vehicle-image">
-                                                    <img src="images/vehicles/18-van.png" alt="18t Lorry" class="img-fluid">
+                                                    <img src="images/vehicles/18-van.png" alt="18t Lorry"
+                                                        class="img-fluid">
                                                 </div>
                                             </div>
                                         </div>
@@ -610,12 +633,15 @@
                                             <div class="vehicle-card">
                                                 <div class="d-flex justify-content-between mb-2">
                                                     <span class="vehicle-name">26t Lorry
-                                                        <span class="selected-badge-van"><i class="fas fa-check"></i></span>
+                                                        <span class="selected-badge-van"><i
+                                                                class="fas fa-check"></i></span>
                                                     </span>
-                                                    <span class="info-icon"><i class="fas fa-ellipsis-vertical"></i></span>
+                                                    <span class="info-icon"><i
+                                                            class="fas fa-ellipsis-vertical"></i></span>
                                                 </div>
                                                 <div class="vehicle-image">
-                                                    <img src="images/vehicles/26-van.png" alt="26t Lorry" class="img-fluid">
+                                                    <img src="images/vehicles/26-van.png" alt="26t Lorry"
+                                                        class="img-fluid">
                                                 </div>
                                             </div>
                                         </div>
@@ -627,9 +653,11 @@
                                             <div class="vehicle-card">
                                                 <div class="d-flex justify-content-between mb-2">
                                                     <span class="vehicle-name">13.6m (Artic)
-                                                        <span class="selected-badge-van"><i class="fas fa-check"></i></span>
+                                                        <span class="selected-badge-van"><i
+                                                                class="fas fa-check"></i></span>
                                                     </span>
-                                                    <span class="info-icon"><i class="fas fa-ellipsis-vertical"></i></span>
+                                                    <span class="info-icon"><i
+                                                            class="fas fa-ellipsis-vertical"></i></span>
                                                 </div>
                                                 <div class="vehicle-image">
                                                     <img src="images/vehicles/13.6-van.png" alt="13.6m (Artic)"
@@ -647,7 +675,8 @@
                                 <!-- <p class="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipiscing.</p> -->
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
-                                        <label for="contents-description" class="form-label fw-bold">Description of Contents<span class="text-danger">*</span></label>
+                                        <label for="contents-description" class="form-label fw-bold">Description of
+                                            Contents<span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" id="contents-description" required />
                                     </div>
 
@@ -661,14 +690,73 @@
                                         </select>
                                     </div> -->
                                     <div class="col-md-6 mb-4">
-                                        <label for="contents-description" class="form-label fw-bold">Collection Postcode<span class="text-danger">*</span></label>
+                                        <label for="contents-description" class="form-label fw-bold">Collection
+                                            Postcode<span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" id="contents-description" required />
                                     </div>
 
                                     <div class="col-md-6 mb-4">
-                                        <label for="contents-description" class="form-label fw-bold">Delivery Postcode<span class="text-danger">*</span></label>
+                                        <label for="contents-description" class="form-label fw-bold">Delivery
+                                            Postcode<span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" id="contents-description" required />
                                     </div>
+                                </div>
+                            </div>
+
+                            <div id="internationalFreightForm" style="display: none;">
+                                <h4 class="form-step-title">Journey Details</h4>
+                                <!-- <p class="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipiscing.</p> -->
+                                <div class="row">
+                                    <div class="col-md-12 mb-4">
+                                        <label for="contents-description" class="form-label fw-bold">Description of
+                                            Contents<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="contents-description" required />
+                                    </div>
+                                    <h4 class="form-step-title">Collection</h4>
+
+                                    <div class="col-md-6 mb-4">
+                                        <label for="collection" class="form-label fw-bold">Country<span
+                                                class="text-danger">*</span></label>
+                                        <select class="form-select" id="collection" required>
+                                            <option value="" selected disabled>Select collection</option>
+                                            <option value="uk">UK Mainland</option>
+                                            <option value="ireland">Northern Ireland</option>
+                                            <option value="ireland">Southern Ireland</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <label for="contents-description" class="form-label fw-bold">Postcode/town<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="contents-description" required />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="collection-date" class="form-label fw-bold">Date Ready for
+                                            Collection<span class="text-danger">*</span></label>
+                                        <input type="date" class="form-control" id="collection-date"
+                                            placeholder="Select date" required>
+                                    </div>
+                                     <h4 class="form-step-title mt-3">Delivery</h4>
+                                    <div class="col-md-6 mb-4">
+                                        <label for="collection" class="form-label fw-bold">Delivery Country<span
+                                                class="text-danger">*</span></label>
+                                        <select class="form-select" id="collection" required>
+                                            <option value="" selected disabled>Select collection</option>
+                                            <option value="uk">UK Mainland</option>
+                                            <option value="ireland">Northern Ireland</option>
+                                            <option value="ireland">Southern Ireland</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <label for="contents-description" class="form-label fw-bold">Postcode/town<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="contents-description" required />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="collection-date" class="form-label fw-bold">Date to be delivered
+                                            by<span class="text-danger">*</span></label>
+                                        <input type="date" class="form-control" id="collection-date"
+                                            placeholder="Select date" required>
+                                    </div>
+
+                                    
                                 </div>
                             </div>
 
@@ -678,14 +766,17 @@
                                 <!-- <p class="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipiscing.</p> -->
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
-                                        <label for="docs-contents-description" class="form-label fw-bold">Description of Contents<span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="docs-contents-description" placeholder="Enter description of contents" required />
+                                        <label for="docs-contents-description" class="form-label fw-bold">Description of
+                                            Contents<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="docs-contents-description"
+                                            placeholder="Enter description of contents" required />
                                     </div>
 
                                     <div class="row">
                                         <h4 class="form-step-title">Collection</h4>
                                         <div class="col-md-6 mb-4">
-                                            <label for="country" class="form-label fw-bold">Country<span class="text-danger">*</span></label>
+                                            <label for="country" class="form-label fw-bold">Country<span
+                                                    class="text-danger">*</span></label>
                                             <select class="form-select" id="country" required>
                                                 <option value="" selected disabled>United Kingdom</option>
                                                 <option value="uk">United Kingdom</option>
@@ -695,13 +786,16 @@
                                             </select>
                                         </div>
                                         <div class="col-md-6 mb-4">
-                                            <label for="postcode" class="form-label fw-bold">Postcode<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="postcode" placeholder="W1A 1AA" required>
+                                            <label for="postcode" class="form-label fw-bold">Postcode<span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="postcode" placeholder="W1A 1AA"
+                                                required>
                                         </div>
                                         <h4 class="form-step-title">Delivery</h4>
 
                                         <div class="col-md-6 mb-4">
-                                            <label for="country" class="form-label fw-bold">Country<span class="text-danger">*</span></label>
+                                            <label for="country" class="form-label fw-bold">Country<span
+                                                    class="text-danger">*</span></label>
                                             <select class="form-select" id="country" required>
                                                 <option value="" selected disabled>United Kingdom</option>
                                                 <option value="uk">United Kingdom</option>
@@ -711,8 +805,10 @@
                                             </select>
                                         </div>
                                         <div class="col-md-6 mb-4">
-                                            <label for="postcode" class="form-label fw-bold">Postcode<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="postcode" placeholder="W1A 1AA" required>
+                                            <label for="postcode" class="form-label fw-bold">Postcode<span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="postcode" placeholder="W1A 1AA"
+                                                required>
                                         </div>
                                     </div>
                                 </div>
@@ -722,7 +818,8 @@
                             <div id="freightForm" style="display: none;">
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
-                                        <label for="freight-tariff-type" class="form-label">Tariff Type<span class="text-danger">*</span></label>
+                                        <label for="freight-tariff-type" class="form-label">Tariff Type<span
+                                                class="text-danger">*</span></label>
                                         <select class="form-select" id="freight-tariff-type" required>
                                             <option value="" selected disabled>Select tariff type</option>
                                             <option value="express">Express</option>
@@ -731,7 +828,8 @@
                                     </div>
 
                                     <div class="col-md-6 mb-4">
-                                        <label for="transfer-type" class="form-label">Transfer Type<span class="text-danger">*</span></label>
+                                        <label for="transfer-type" class="form-label">Transfer Type<span
+                                                class="text-danger">*</span></label>
                                         <select class="form-select" id="transfer-type" required>
                                             <option value="" selected disabled>Select transfer type</option>
                                             <option value="door-to-door">Door to Door</option>
@@ -773,21 +871,22 @@
                                                         <span class="drag-handle me-1">
                                                             <i class="bi bi-grip-vertical"></i>
                                                         </span>
-                                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                                        <div
+                                                            class="d-flex justify-content-between align-items-center w-100">
                                                             <div>
-                                                                <small>Stop 1:</small>
-                                                                <div>Via - London</div>
+                                                                <small>First Pickup</small>
+                                                                <!-- <div>Via - London</div> -->
                                                             </div>
                                                             <button class="collapse-icon btn p-0" type="button"
                                                                 data-bs-toggle="collapse"
-                                                                data-bs-target="#collapseCollection1" 
+                                                                data-bs-target="#collapseCollection1"
                                                                 aria-expanded="false">
                                                                 <i class="bi bi-chevron-up"></i>
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="collapse" id="collapseCollection1">
+                                                <div class="collapse " id="collapseCollection1">
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-end mb-3">
                                                             <div class="action-icons">
@@ -803,9 +902,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label for="collection-country" class="form-label">Country<span
+                                                            <label for="collection-country"
+                                                                class="form-label">Country<span
                                                                     class="text-danger">*</span></label>
-                                                            <select class="form-select" id="collection-country" required>
+                                                            <select class="form-select" id="collection-country"
+                                                                required>
                                                                 <option value="">Select country</option>
                                                                 <option value="uk" selected>United Kingdom</option>
                                                                 <option value="us">United States</option>
@@ -813,7 +914,8 @@
                                                             </select>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label for="collection-postcode" class="form-label">Collection
+                                                            <label for="collection-postcode"
+                                                                class="form-label">Collection
                                                                 Postcode<span class="text-danger">*</span></label>
                                                             <div class="input-group">
                                                                 <input type="text" class="form-control"
@@ -838,8 +940,8 @@
                                                                 </select>
                                                             </div>
                                                             <div class="col-md-6 mb-3">
-                                                                <label for="collect-by" class="form-label">Collect By<span
-                                                                        class="text-danger">*</span></label>
+                                                                <label for="collect-by" class="form-label">Collect
+                                                                    By<span class="text-danger">*</span></label>
                                                                 <select class="form-select" id="collect-by" required>
                                                                     <option value="" selected>Collect by</option>
                                                                     <option value="15:00">3:00 PM</option>
@@ -849,7 +951,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <div class="form-check">
+                                                            <div class="form-check large-checkbox">
                                                                 <input class="form-check-input" type="checkbox"
                                                                     id="collection-helper" checked>
                                                                 <label class="form-check-label label-text"
@@ -883,26 +985,29 @@
                                         </div>
                                         <div id="deliveryContainer">
                                             <!-- Delivery Point 1 -->
-                                            <div class="card collection-form mb-3 card-border" data-form-type="delivery">
+                                            <div class="card collection-form mb-3 card-border"
+                                                data-form-type="delivery">
                                                 <div class="card-header">
                                                     <div class="d-flex align-items-center w-100 mb-2">
                                                         <span class="drag-handle me-1">
                                                             <i class="bi bi-grip-vertical"></i>
                                                         </span>
-                                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                                        <div
+                                                            class="d-flex justify-content-between align-items-center w-100">
                                                             <div>
-                                                                <small>Stop 1:</small>
-                                                                <div>Via - Maryland</div>
+                                                                <small>First Delivery</small>
+                                                                <!-- <div>Via - Maryland</div> -->
                                                             </div>
                                                             <button class="collapse-icon btn p-0" type="button"
-                                                                data-bs-toggle="collapse" data-bs-target="#collapseDelivery1"
-                                                                aria-expanded="true">
+                                                                data-bs-toggle="collapse"
+                                                                data-bs-target="#collapseDelivery1"
+                                                                aria-expanded="fasle">
                                                                 <i class="bi bi-chevron-up"></i>
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="collapse show" id="collapseDelivery1">
+                                                <div class="collapse " id="collapseDelivery1">
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-end mb-3">
                                                             <div class="action-icons">
@@ -918,10 +1023,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label for="delivery-country" class="form-label">Country<span
+                                                            <label for="delivery-country"
+                                                                class="form-label">Country<span
                                                                     class="text-danger">*</span></label>
                                                             <select class="form-select" id="delivery-country" required>
-                                                                <option value="" >Select country</option>
+                                                                <option value="">Select country</option>
                                                                 <option value="uk" selected>United Kingdom</option>
                                                                 <option value="us">United States</option>
                                                                 <option value="ca">Canada</option>
@@ -950,11 +1056,11 @@
                                                             </select>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <div class="form-check">
+                                                            <div class="form-check large-checkbox">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    id="delivery-helper" checked>
+                                                                    id="collection-helper" checked>
                                                                 <label class="form-check-label label-text"
-                                                                    for="delivery-helper">
+                                                                    for="collection-helper">
                                                                     Helper
                                                                 </label>
                                                             </div>
@@ -966,7 +1072,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
 
                         <!-- Step 3: Journey Details Form -->
@@ -977,30 +1083,42 @@
 
                                 <div class="row">
                                     <div class="col-12 mb-4">
-                                        <label for="packaged-weight" class="form-label fw-bold">Packaged weight & dimensions*</label>
-                                        <textarea type="text" class="form-control" id="packaged-weight" placeholder="Weight & dimensions"></textarea>
-                                        <small class="text-danger fw-bold">N.B. To provide a quote we need the weight & all 3 dimensions (length, width & height) for each pallet in your consignment.</small>
+                                        <label for="packaged-weight" class="form-label fw-bold">Packaged weight &
+                                            dimensions*</label>
+                                        <textarea type="text" class="form-control large-textarea" id="packaged-weight"
+                                            placeholder="Weight & dimensions"></textarea>
+                                        <small class="text-danger fw-bold">N.B. To provide a quote we need the weight &
+                                            all 3 dimensions (length, width & height) for each pallet in your
+                                            consignment.</small>
                                     </div>
 
                                     <div class="col-12">
-                                        <div class="d-flex gap-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="stackable">
-                                                <label class="form-check-label" for="stackable">
-                                                    Stackable
-                                                </label>
+                                        <div class="row g-3">
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-check custom-checkbox-card h-100">
+                                                    <input class="form-check-input" type="checkbox" id="stackable">
+                                                    <label class="form-check-label" for="stackable">
+                                                        Stackable
+                                                    </label>
+                                                </div>
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="tail-lift-collection">
-                                                <label class="form-check-label" for="tail-lift-collection">
-                                                    Tail lift needed at collection
-                                                </label>
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-check custom-checkbox-card h-100">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        id="tail-lift-collection">
+                                                    <label class="form-check-label" for="tail-lift-collection">
+                                                        Tail lift needed at collection
+                                                    </label>
+                                                </div>
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="tail-lift-delivery">
-                                                <label class="form-check-label" for="tail-lift-delivery">
-                                                    Tail lift needed at delivery
-                                                </label>
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-check custom-checkbox-card h-100">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        id="tail-lift-delivery">
+                                                    <label class="form-check-label" for="tail-lift-delivery">
+                                                        Tail lift needed at delivery
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1015,7 +1133,7 @@
                                     <div class="col-md-6 pe-md-2">
                                         <div class="mb-3 d-flex justify-content-between align-items-center">
                                             <div class="section-title-3 d-flex align-items-center">
-                                                <h5 class="mb-0">Collection</h5>
+                                                <h5 class="mb-0 fw-bold">Collection</h5>
                                                 <!-- <span class="ms-2">
                                                     <i class="bi bi-info-circle text-muted" 
                                                     data-bs-toggle="tooltip" 
@@ -1024,8 +1142,8 @@
                                                 </span> -->
                                             </div>
                                             <button type="button" data-add-type="collection"
-                                                class="btn btn-link p-0 add-point-btn">
-                                                <i class="bi bi-plus-lg me-1"></i> ADD COLLECTION
+                                                class="btn btn-link p-0 add-point-btn uk-non-standard-hidden">
+                                                <i class="bi bi-plus-lg me-1 fw-bold"></i> ADD COLLECTION
                                             </button>
                                         </div>
 
@@ -1037,14 +1155,15 @@
                                                         <span class="drag-handle me-1">
                                                             <i class="bi bi-grip-vertical"></i>
                                                         </span>
-                                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                                        <div
+                                                            class="d-flex justify-content-between align-items-center w-100">
                                                             <div>
-                                                                <!-- <small>Stop 1:</small>
-                                                                <div>Via - London</div> -->
+                                                                <small>First Pickup:</small>
+                                                                <!-- <div>Via - London</div> -->
                                                             </div>
                                                             <button class="collapse-icon btn p-0" type="button"
                                                                 data-bs-toggle="collapse"
-                                                                data-bs-target="#collapseCollection1" 
+                                                                data-bs-target="#collapseCollection1"
                                                                 aria-expanded="false">
                                                                 <i class="bi bi-chevron-up"></i>
                                                             </button>
@@ -1067,17 +1186,20 @@
                                                             </div>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label for="collection-country" class="form-label">Country<span
+                                                            <label for="collection-country"
+                                                                class="form-label">Country<span
                                                                     class="text-danger">*</span></label>
-                                                            <select class="form-select" id="collection-country" required>
-                                                                <option value="" >Select country</option>
+                                                            <select class="form-select" id="collection-country"
+                                                                required>
+                                                                <option value="">Select country</option>
                                                                 <option value="uk" selected>United Kingdom</option>
-                                                                <option value="us">United States</option>
-                                                                <option value="ca">Canada</option>
+                                                                <option value="us" class="uk-non-standard-hidden">United States</option>
+                                                                <option value="ca" class="uk-non-standard-hidden">Canada</option>
                                                             </select>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label for="collection-postcode" class="form-label">Collection
+                                                            <label for="collection-postcode"
+                                                                class="form-label">Collection
                                                                 Postcode<span class="text-danger">*</span></label>
                                                             <div class="input-group">
                                                                 <input type="text" class="form-control"
@@ -1102,8 +1224,8 @@
                                                                 </select>
                                                             </div>
                                                             <div class="col-md-6 mb-3">
-                                                                <label for="collect-by" class="form-label">Collect By<span
-                                                                        class="text-danger">*</span></label>
+                                                                <label for="collect-by" class="form-label">Collect
+                                                                    By<span class="text-danger">*</span></label>
                                                                 <select class="form-select" id="collect-by" required>
                                                                     <option value="" selected>Collect by</option>
                                                                     <option value="15:00">3:00 PM</option>
@@ -1112,8 +1234,8 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <!-- <div class="mb-3">
-                                                            <div class="form-check">
+                                                        <div class="mb-3">
+                                                            <div class="form-check large-checkbox">
                                                                 <input class="form-check-input" type="checkbox"
                                                                     id="collection-helper" checked>
                                                                 <label class="form-check-label label-text"
@@ -1121,7 +1243,7 @@
                                                                     Helper
                                                                 </label>
                                                             </div>
-                                                        </div> -->
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1132,7 +1254,7 @@
                                     <div class="col-md-6 ps-md-2">
                                         <div class="mb-3 d-flex justify-content-between align-items-center">
                                             <div class="section-title-3 d-flex align-items-center">
-                                                <h5 class="mb-0">Delivery</h5>
+                                                <h5 class="mb-0 fw-bold">Delivery</h5>
                                                 <span class="ms-2">
                                                     <!-- <i class="bi bi-info-circle text-warning" 
                                                     data-bs-toggle="tooltip" 
@@ -1141,25 +1263,28 @@
                                                 </span>
                                             </div>
                                             <button type="button" data-add-type="delivery"
-                                                class="btn btn-link p-0 add-point-btn">
-                                                <i class="bi bi-plus-lg me-1"></i>ADD DELIVERY
+                                                class="btn btn-link p-0 add-point-btn uk-non-standard-hidden">
+                                                <i class="bi bi-plus-lg me-1 fw-bold"></i>ADD DELIVERY
                                             </button>
                                         </div>
                                         <div id="deliveryContainer">
                                             <!-- Delivery Point 1 -->
-                                            <div class="card collection-form mb-3 card-border" data-form-type="delivery">
+                                            <div class="card collection-form mb-3 card-border"
+                                                data-form-type="delivery">
                                                 <div class="card-header">
                                                     <div class="d-flex align-items-center w-100 mb-2">
                                                         <span class="drag-handle me-1">
                                                             <i class="bi bi-grip-vertical"></i>
                                                         </span>
-                                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                                        <div
+                                                            class="d-flex justify-content-between align-items-center w-100">
                                                             <div>
-                                                                <!-- <small>Stop 1:</small>
-                                                                <div>Via - Maryland</div> -->
+                                                                <small>First Delivery</small>
+                                                                <!-- <div>Via - Maryland</div> -->
                                                             </div>
                                                             <button class="collapse-icon btn p-0" type="button"
-                                                                data-bs-toggle="collapse" data-bs-target="#collapseDelivery1"
+                                                                data-bs-toggle="collapse"
+                                                                data-bs-target="#collapseDelivery1"
                                                                 aria-expanded="false">
                                                                 <i class="bi bi-chevron-up"></i>
                                                             </button>
@@ -1182,10 +1307,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label for="delivery-country" class="form-label">Country<span
+                                                            <label for="delivery-country"
+                                                                class="form-label">Country<span
                                                                     class="text-danger">*</span></label>
                                                             <select class="form-select" id="delivery-country" required>
-                                                                <option value="" >Select country</option>
+                                                                <option value="">Select country</option>
                                                                 <option value="uk" selected>United Kingdom</option>
                                                                 <option value="us">United States</option>
                                                                 <option value="ca">Canada</option>
@@ -1213,8 +1339,8 @@
                                                                 <option value="17:00">5:00 PM</option>
                                                             </select>
                                                         </div>
-                                                        <!-- <div class="mb-3">
-                                                            <div class="form-check">
+                                                        <div class="mb-3">
+                                                            <div class="form-check large-checkbox">
                                                                 <input class="form-check-input" type="checkbox"
                                                                     id="delivery-helper" checked>
                                                                 <label class="form-check-label label-text"
@@ -1222,7 +1348,7 @@
                                                                     Helper
                                                                 </label>
                                                             </div>
-                                                        </div> -->
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1238,9 +1364,14 @@
 
                                 <div class="row">
                                     <div class="col-12 mb-4">
-                                        <label for="packaged-weight-dimensions" class="form-label fw-bold">Packaged weight & dimensions*</label>
-                                        <textarea type="text" class="form-control" id="packaged-weight-dimensions" placeholder="Enter weight & dimensions"></textarea>
-                                        <small class="text-danger fw-bold">N.B. To provide a quote we need the weight & all 3 dimensions (length, width & height) for each package in your consignment.</small>
+                                        <label for="packaged-weight-dimensions" class="form-label fw-bold">Packaged
+                                            weight & dimensions*</label>
+                                        <textarea type="text" class="form-control large-textarea"
+                                            id="packaged-weight-dimensions"
+                                            placeholder="Enter weight & dimensions"></textarea>
+                                        <small class="text-danger fw-bold">N.B. To provide a quote we need the weight &
+                                            all 3 dimensions (length, width & height) for each package in your
+                                            consignment.</small>
                                     </div>
                                 </div>
                             </div>
@@ -1251,36 +1382,50 @@
 
                                 <div class="row">
                                     <div class="col-12 mb-4">
-                                        <label for="packaged-weight" class="form-label fw-bold">Packaged weight & dimensions*</label>
-                                        <textarea type="text" class="form-control" id="packaged-weight" placeholder="Weight & dimensions"></textarea>
-                                        <small class="text-danger fw-bold">N.B. To provide a quote we need the weight & all 3 dimensions (length, width & height) for each pallet in your consignment.</small>
+                                        <label for="packaged-weight" class="form-label fw-bold">Packaged weight &
+                                            dimensions*</label>
+                                        <textarea type="text" class="form-control large-textarea" id="packaged-weight"
+                                            placeholder="Weight & dimensions"></textarea>
+                                        <small class="text-danger fw-bold">N.B. To provide a quote we need the weight &
+                                            all 3 dimensions (length, width & height) for each pallet in your
+                                            consignment.</small>
                                     </div>
 
                                     <div class="col-12">
-                                        <div class="d-flex gap-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="stackable">
-                                                <label class="form-check-label" for="stackable">
-                                                    on pallets
-                                                </label>
+                                        <div class="row g-3">
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-check custom-checkbox-card h-100">
+                                                    <input class="form-check-input" type="checkbox" id="stackable">
+                                                    <label class="form-check-label" for="stackable">
+                                                        On Pallets
+                                                    </label>
+                                                </div>
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="stackable">
-                                                <label class="form-check-label" for="stackable">
-                                                    Stackable
-                                                </label>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-check custom-checkbox-card h-100">
+                                                    <input class="form-check-input" type="checkbox" id="stackable">
+                                                    <label class="form-check-label" for="stackable">
+                                                        Stackable
+                                                    </label>
+                                                </div>
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="tail-lift-collection">
-                                                <label class="form-check-label" for="tail-lift-collection">
-                                                    Tail lift needed at collection
-                                                </label>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-check custom-checkbox-card h-100">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        id="tail-lift-collection">
+                                                    <label class="form-check-label" for="tail-lift-collection">
+                                                        Tail lift needed at collection
+                                                    </label>
+                                                </div>
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="tail-lift-delivery">
-                                                <label class="form-check-label" for="tail-lift-delivery">
-                                                    Tail lift needed at delivery
-                                                </label>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-check custom-checkbox-card h-100">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        id="tail-lift-delivery">
+                                                    <label class="form-check-label" for="tail-lift-delivery">
+                                                        Tail lift needed at delivery
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1311,7 +1456,7 @@
                                     <input type="text" class="form-control" placeholder="Enter your name"
                                         id="first-name" required>
                                 </div>
-                                
+
                                 <div class="col-md-4 mb-3">
                                     <label for="contact-number" class="form-label fw-bold">Telephone Number<span
                                             class="text-danger">*</span></label>
@@ -1322,7 +1467,8 @@
                                             <option value="+33">+33</option>
                                             <option value="+49">+49</option>
                                         </select>
-                                        <input type="tel" class="form-control" id="contact-number" placeholder="(000) 000-000" required>
+                                        <input type="tel" class="form-control" id="contact-number"
+                                            placeholder="(000) 000-000" required>
                                     </div>
                                 </div>
                             </div>
@@ -1338,22 +1484,25 @@
                     </form>
                 </div>
                 <!-- Success Page -->
-            <div id="successPage" class="text-center py-5" style="display: none;">
-                <div class="success-container">
-                    <img src="images/success.png" alt="Success" class="mb-4" style="width: 100px;">
-                    <h2 class="mb-3">Thanks for your quote request</h2>
-                    <p class="mb-2">Your reference for this is: <span id="quoteReference" class="fw-bold">Q******</span></p>
-                    <p class="mb-4">It's being processed now and one of our staff will get back to you shortly.</p>
-                    <p class="mb-4">Please <span class="fw-bold">check your spam or junk email folder</span> if our response doesn't arrive in your inbox.</p>
-                    <div class="d-flex justify-content-center gap-3">
-                        <button class="btn btn-outline-raq px-4" onclick="requestAnotherQuote()">REQUEST ANOTHER QUOTE</button>
-                        <button class="btn btn-goto px-4" onclick="goToHomepage()">GO TO HOMEPAGE</button>
+                <div id="successPage" class="text-center py-5" style="display: none;">
+                    <div class="success-container">
+                        <img src="images/success.png" alt="Success" class="mb-4" style="width: 100px;">
+                        <h2 class="mb-3">Thanks for your quote request</h2>
+                        <p class="mb-2">Your reference for this is: <span id="quoteReference"
+                                class="fw-bold">Q******</span></p>
+                        <p class="mb-4">It's being processed now and one of our staff will get back to you shortly.</p>
+                        <p class="mb-4">Please <span class="fw-bold">check your spam or junk email folder</span> if our
+                            response doesn't arrive in your inbox.</p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <button class="btn btn-outline-raq px-4" onclick="requestAnotherQuote()">REQUEST ANOTHER
+                                QUOTE</button>
+                            <button class="btn btn-goto px-4" onclick="goToHomepage()">GO TO HOMEPAGE</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
 
-            
+
         </div>
     </section>
 
@@ -1372,11 +1521,14 @@
                             <hr class="section-divider mb-3">
                             <div class="body-type-options">
                                 <div class="radio-btn-group small-van-only" style="display: none;">
-                                    <input type="radio" id="box-panel-small" name="body-type-small" class="radio-input" checked>
+                                    <input type="radio" id="box-panel-small" name="body-type-small" class="radio-input"
+                                        checked>
                                     <label for="box-panel-small" class="radio-label">Box/Panel</label>
                                 </div>
-                                <div class="radio-btn-group transit-van-only lwb-transit-only xlwb-transit-only" style="display: none;">
-                                    <input type="radio" id="box-panel-transit" name="body-type-transit" class="radio-input" checked disabled>
+                                <div class="radio-btn-group transit-van-only lwb-transit-only xlwb-transit-only"
+                                    style="display: none;">
+                                    <input type="radio" id="box-panel-transit" name="body-type-transit"
+                                        class="radio-input" checked disabled>
                                     <label for="box-panel-transit" class="radio-label">Box/Panel</label>
                                 </div>
                                 <div class="radio-btn-group luton-van-only" style="display: none;">
@@ -1384,7 +1536,8 @@
                                     <label for="box-panel-luton" class="radio-label">Box/Panel</label>
                                 </div>
                                 <div class="radio-btn-group luton-van-only" style="display: none;">
-                                    <input type="radio" id="curtain-sider-luton" name="body-type-luton" class="radio-input">
+                                    <input type="radio" id="curtain-sider-luton" name="body-type-luton"
+                                        class="radio-input">
                                     <label for="curtain-sider-luton" class="radio-label">Curtain-Sider</label>
                                 </div>
                                 <div class="radio-btn-group lorry-only" style="display: none;">
@@ -1392,30 +1545,35 @@
                                     <label for="box-panel-lorry" class="radio-label">Box/Panel</label>
                                 </div>
                                 <div class="radio-btn-group lorry-only" style="display: none;">
-                                    <input type="radio" id="curtain-sider-lorry" name="body-type-lorry" class="radio-input">
+                                    <input type="radio" id="curtain-sider-lorry" name="body-type-lorry"
+                                        class="radio-input">
                                     <label for="curtain-sider-lorry" class="radio-label">Curtain-Sider</label>
                                 </div>
                             </div>
 
                             <!-- Small Van Options -->
                             <div class="checkbox-group small-van-only" style="display: none;">
-                                <label class="checkbox-label"
-                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Helper can be booked if extra assistance is required at either collection or delivery.">
+                                <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="Helper can be booked if extra assistance is required at either collection or delivery.">
                                     <input type="checkbox" class="checkbox-input" checked>
                                     Helper
                                 </label>
                             </div>
 
                             <!-- Transit Van Options -->
-                            <div class="checkbox-group transit-van-only lwb-transit-only xlwb-transit-only" style="display: none;">
-                                <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="Helper can be booked if extra assistance is required at either collection or delivery.">
+                            <div class="checkbox-group transit-van-only lwb-transit-only xlwb-transit-only"
+                                style="display: none;">
+                                <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="Helper can be booked if extra assistance is required at either collection or delivery.">
                                     <input type="checkbox" class="checkbox-input" checked>
                                     Helper
                                 </label>
                             </div>
 
-                            <div class="checkbox-group transit-van-only lwb-transit-only xlwb-transit-only" style="display: none;">
-                                <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of dangerous goods.">
+                            <div class="checkbox-group transit-van-only lwb-transit-only xlwb-transit-only"
+                                style="display: none;">
+                                <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="For the carriage of dangerous goods.">
                                     <input type="checkbox" class="checkbox-input" checked>
                                     ADR
                                 </label>
@@ -1424,41 +1582,50 @@
                             <!-- Temperature Control Sections -->
                             <div class="section temperature-control-section transit-van-only" style="display: none;">
                                 <div class="radio-btn-group">
-                                    <input type="radio" id="temperature-controlled-transit" name="temperature-control-transit" class="radio-input temperature-control">
-                                    <label for="temperature-controlled-transit" class="radio-label">Temperature Controlled</label>
+                                    <input type="radio" id="temperature-controlled-transit"
+                                        name="temperature-control-transit" class="radio-input temperature-control">
+                                    <label for="temperature-controlled-transit" class="radio-label">Temperature
+                                        Controlled</label>
                                 </div>
                             </div>
 
                             <div class="section temperature-control-section lwb-transit-only" style="display: none;">
                                 <div class="radio-btn-group">
-                                    <input type="radio" id="temperature-controlled-lwb" name="temperature-control-lwb" class="radio-input temperature-control">
-                                    <label for="temperature-controlled-lwb" class="radio-label">Temperature Controlled</label>
+                                    <input type="radio" id="temperature-controlled-lwb" name="temperature-control-lwb"
+                                        class="radio-input temperature-control">
+                                    <label for="temperature-controlled-lwb" class="radio-label">Temperature
+                                        Controlled</label>
                                 </div>
                             </div>
 
                             <div class="section temperature-control-section xlwb-transit-only" style="display: none;">
                                 <div class="radio-btn-group">
-                                    <input type="radio" id="temperature-controlled-xlwb" name="temperature-control-xlwb" class="radio-input temperature-control">
-                                    <label for="temperature-controlled-xlwb" class="radio-label">Temperature Controlled</label>
+                                    <input type="radio" id="temperature-controlled-xlwb" name="temperature-control-xlwb"
+                                        class="radio-input temperature-control">
+                                    <label for="temperature-controlled-xlwb" class="radio-label">Temperature
+                                        Controlled</label>
                                 </div>
                             </div>
 
                             <!-- Temperature Options -->
                             <div class="temperature-options transit-van-only" style="display: none;">
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label"  data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at room temperature.">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at room temperature.">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-transit">
                                         Ambient
                                     </label>
                                 </div>
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label"  data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at a set chilled temperature."></label>
-                                        <input type="checkbox" class="checkbox-input" name="temperature-type-transit">
-                                        Chilled
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at a set chilled temperature."></label>
+                                    <input type="checkbox" class="checkbox-input" name="temperature-type-transit">
+                                    Chilled
                                     </label>
                                 </div>
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at a frozen temperature.">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at a frozen temperature.">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-transit">
                                         Frozen
                                     </label>
@@ -1467,19 +1634,22 @@
 
                             <div class="temperature-options lwb-transit-only" style="display: none;">
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at room temperature.">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at room temperature.">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-lwb">
                                         Ambient
                                     </label>
                                 </div>
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at a set chilled temperature.">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at a set chilled temperature.">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-lwb">
                                         Chilled
                                     </label>
                                 </div>
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at a frozen temperature">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at a frozen temperature">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-lwb">
                                         Frozen
                                     </label>
@@ -1488,19 +1658,22 @@
 
                             <div class="temperature-options xlwb-transit-only" style="display: none;">
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at room temperature.">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at room temperature.">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-xlwb">
                                         Ambient
                                     </label>
                                 </div>
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at a set chilled temperature.">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at a set chilled temperature.">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-xlwb">
                                         Chilled
                                     </label>
                                 </div>
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at a frozen temperature.">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at a frozen temperature.">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-xlwb">
                                         Frozen
                                     </label>
@@ -1509,14 +1682,22 @@
 
                             <!-- Luton Van Options -->
                             <div class="checkbox-group luton-van-only" style="display: none;">
-                                <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="Helper can be booked if extra assistance is required at either collection or delivery.">
+                                <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="Helper can be booked if extra assistance is required at either collection or delivery.">
                                     <input type="checkbox" class="checkbox-input" checked>
                                     Helper
                                 </label>
                             </div>
+                            <div class="checkbox-group luton-van-only" style="display: none;">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" class="checkbox-input" checked>
+                                    Tail Lift
+                                </label>
+                            </div>
 
                             <div class="checkbox-group luton-van-only" style="display: none;">
-                                <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of dangerous goods.">
+                                <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="For the carriage of dangerous goods.">
                                     <input type="checkbox" class="checkbox-input" checked>
                                     ADR
                                 </label>
@@ -1524,26 +1705,31 @@
 
                             <div class="section temperature-control-section luton-van-only" style="display: none;">
                                 <div class="radio-btn-group">
-                                    <input type="radio" id="temperature-controlled-luton" name="temperature-control-luton" class="radio-input temperature-control">
-                                    <label for="temperature-controlled-luton" class="radio-label">Temperature Controlled</label>
+                                    <input type="radio" id="temperature-controlled-luton"
+                                        name="temperature-control-luton" class="radio-input temperature-control">
+                                    <label for="temperature-controlled-luton" class="radio-label">Temperature
+                                        Controlled</label>
                                 </div>
                             </div>
 
                             <div class="temperature-options luton-van-only" style="display: none;">
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at room temperature.">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at room temperature.">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-luton">
                                         Ambient
                                     </label>
                                 </div>
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at a set chilled temperature.">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at a set chilled temperature.">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-luton">
                                         Chilled
                                     </label>
                                 </div>
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at a frozen temperature.">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at a frozen temperature.">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-luton">
                                         Frozen
                                     </label>
@@ -1559,14 +1745,22 @@
 
                             <!-- Lorry Options -->
                             <div class="checkbox-group lorry-only" style="display: none;">
-                                <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="Helper can be booked if extra assistance is required at either collection or delivery.">
+                                <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="Helper can be booked if extra assistance is required at either collection or delivery.">
                                     <input type="checkbox" class="checkbox-input" checked>
                                     Helper
                                 </label>
                             </div>
+                            <div class="checkbox-group lorry-only" style="display: none;">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" class="checkbox-input" checked>
+                                    Tail Lift
+                                </label>
+                            </div>
 
                             <div class="checkbox-group lorry-only" style="display: none;">
-                                <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of dangerous goods.">
+                                <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="For the carriage of dangerous goods.">
                                     <input type="checkbox" class="checkbox-input" checked>
                                     ADR
                                 </label>
@@ -1575,26 +1769,31 @@
                             <!-- 7.5t Lorry Options -->
                             <div class="section temperature-control-section lorry-7-5t-only" style="display: none;">
                                 <div class="radio-btn-group">
-                                    <input type="radio" id="temperature-controlled-7-5t" name="temperature-control-7-5t" class="radio-input temperature-control">
-                                    <label for="temperature-controlled-7-5t" class="radio-label">Temperature Controlled</label>
+                                    <input type="radio" id="temperature-controlled-7-5t" name="temperature-control-7-5t"
+                                        class="radio-input temperature-control">
+                                    <label for="temperature-controlled-7-5t" class="radio-label">Temperature
+                                        Controlled</label>
                                 </div>
                             </div>
 
                             <div class="temperature-options lorry-7-5t-only" style="display: none;">
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at room temperature.">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at room temperature.">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-7-5t">
                                         Ambient
                                     </label>
                                 </div>
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at a set chilled temperature.">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at a set chilled temperature.">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-7-5t">
                                         Chilled
                                     </label>
                                 </div>
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at a frozen temperature">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at a frozen temperature">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-7-5t">
                                         Frozen
                                     </label>
@@ -1611,26 +1810,31 @@
                             <!-- 18t Lorry Options -->
                             <div class="section temperature-control-section lorry-18t-only" style="display: none;">
                                 <div class="radio-btn-group">
-                                    <input type="radio" id="temperature-controlled-18t" name="temperature-control-18t" class="radio-input temperature-control">
-                                    <label for="temperature-controlled-18t" class="radio-label">Temperature Controlled</label>
+                                    <input type="radio" id="temperature-controlled-18t" name="temperature-control-18t"
+                                        class="radio-input temperature-control">
+                                    <label for="temperature-controlled-18t" class="radio-label">Temperature
+                                        Controlled</label>
                                 </div>
                             </div>
 
                             <div class="temperature-options lorry-18t-only" style="display: none;">
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at room temperature.">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at room temperature.">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-18t">
                                         Ambient
                                     </label>
                                 </div>
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at a set chilled temperature.">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at a set chilled temperature.">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-18t">
                                         Chilled
                                     </label>
                                 </div>
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at a frozen temperature">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at a frozen temperature">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-18t">
                                         Frozen
                                     </label>
@@ -1647,26 +1851,31 @@
                             <!-- 26t Lorry Options -->
                             <div class="section temperature-control-section lorry-26t-only" style="display: none;">
                                 <div class="radio-btn-group">
-                                    <input type="radio" id="temperature-controlled-26t" name="temperature-control-26t" class="radio-input temperature-control">
-                                    <label for="temperature-controlled-26t" class="radio-label">Temperature Controlled</label>
+                                    <input type="radio" id="temperature-controlled-26t" name="temperature-control-26t"
+                                        class="radio-input temperature-control">
+                                    <label for="temperature-controlled-26t" class="radio-label">Temperature
+                                        Controlled</label>
                                 </div>
                             </div>
 
                             <div class="temperature-options lorry-26t-only" style="display: none;">
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at room temperature.">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at room temperature.">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-26t">
                                         Ambient
                                     </label>
                                 </div>
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at a set chilled temperature.">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at a set chilled temperature.">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-26t">
                                         Chilled
                                     </label>
                                 </div>
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at a frozen temperature">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at a frozen temperature">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-26t">
                                         Frozen
                                     </label>
@@ -1674,7 +1883,7 @@
                             </div>
 
                             <div class="checkbox-group tail-lift-26t" style="display: none;">
-                                <label class="checkbox-label" >
+                                <label class="checkbox-label">
                                     <input type="checkbox" class="checkbox-input">
                                     Tail Lift
                                 </label>
@@ -1683,25 +1892,30 @@
                             <!-- Artic Options -->
                             <div class="section temperature-control-section lorry-artic-only" style="display: none;">
                                 <div class="radio-btn-group">
-                                    <input type="radio" id="temperature-controlled-artic" name="temperature-control-artic" class="radio-input temperature-control">
-                                    <label for="temperature-controlled-artic" class="radio-label">Temperature Controlled</label>
+                                    <input type="radio" id="temperature-controlled-artic"
+                                        name="temperature-control-artic" class="radio-input temperature-control">
+                                    <label for="temperature-controlled-artic" class="radio-label">Temperature
+                                        Controlled</label>
                                 </div>
                             </div>
 
                             <div class="temperature-options lorry-artic-only" style="display: none;">
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at room temperature.">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at room temperature.">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-artic">
                                         Ambient
                                     </label>
                                 </div>
                                 <div class="checkbox-group">
-                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top" title="For the carriage of perishable freight at a set chilled temperature.">
+                                    <label class="checkbox-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For the carriage of perishable freight at a set chilled temperature.">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-artic">
                                         Chilled
                                     </label>
                                 </div>
-                                <div class="checkbox-group"  data-bs-toggle="tooltip" data-bs-placement="left" title="For the carriage of perishable freight at a frozen temperature">
+                                <div class="checkbox-group" data-bs-toggle="tooltip" data-bs-placement="left"
+                                    title="For the carriage of perishable freight at a frozen temperature">
                                     <label class="checkbox-label">
                                         <input type="checkbox" class="checkbox-input" name="temperature-type-artic">
                                         Frozen

@@ -786,7 +786,7 @@ document.addEventListener("DOMContentLoaded", function () {
             type === "collection" ? collectionContainer : deliveryContainer;
         }
         const counter =
-          type === "collection" ? ++collectionCounter : ++deliveryCounter;
+          type === "collection" ? collectionCounter++ : deliveryCounter++;
 
         const formId = `${type}${counter}`;
         const newForm = document.createElement("div");
@@ -801,19 +801,18 @@ document.addEventListener("DOMContentLoaded", function () {
                             </span>
                             <div class="d-flex justify-content-between align-items-center w-100">
                                 <div>
-                                    <small>Stop ${counter}:</small>
-                                    <div>New ${type} point</div>
+                                    <small>Destination ${counter}:</small>
                                 </div>
                                 <button class="collapse-icon btn p-0" type="button"
                                     data-bs-toggle="collapse"
                                     data-bs-target="#collapse${formId}"
-                                    aria-expanded="true">
+                                    aria-expanded="false">
                                     <i class="bi bi-chevron-up"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div class="collapse show" id="collapse${formId}">
+                    <div class="collapse" id="collapse${formId}">
                         <div class="card-body">
                             <div class="d-flex justify-content-end mb-3">
                                 <div class="action-icons">
@@ -870,7 +869,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <div class="form-check">
+                                <div class="form-check large-checkbox">
                                     <input class="form-check-input" type="checkbox">
                                     <label class="form-check-label label-text">Helper</label>
                                 </div>
@@ -1332,12 +1331,26 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("palletCrateDetailsForm").style.display = "none";
       document.getElementById("journeyDetailsForm").style.display = "none";
       document.getElementById("docsParcelDetailsForm").style.display = "none";
+      document.getElementById("internationalFreightForm").style.display = "none";
       // document.getElementById('palletCrateDetailsForm').style.display = 'none';
 
       vehicleSelectionForm.style.display = "none";
       palletServiceForm.style.display = "none";
       docsParcelForm.style.display = "none";
       freightForm.style.display = "none";
+
+      function resetAllVehicles() {
+        const vehicles = document.querySelectorAll(".vehicle-option");
+        vehicles.forEach((vehicle) => {
+          const col = vehicle.closest(".col-md-4, .col-md-6");
+          if (col) {
+            col.style.display = "block";
+            // Reset to default column size (adjust as needed)
+            col.classList.remove("col-md-4", "col-md-6");
+            col.classList.add("col-md-4");
+          }
+        });
+      };
 
       // Show relevant forms based on service selection
       if (serviceName === "International Docs & Parcels") {
@@ -1378,7 +1391,7 @@ document.addEventListener("DOMContentLoaded", function () {
         palletServiceForm.style.display = "block";
       } else if (serviceName === "International Freight") {
         internationalTariffServiceDetails.style.display = "block";
-        journeyDetailsForm.style.display = "block";
+        internationalFreightForm.style.display = "block";
         palletCrateDetailsForm.style.display = "block";
       } else if (serviceName === "International On-Board Courier") {
         journeyDetailsForm.style.display = "block";
@@ -1404,49 +1417,70 @@ document.addEventListener("DOMContentLoaded", function () {
         // Show appropriate form in step 2
         if (serviceName === "UK/EUROPE Time-Critical Courier") {
           vehicleSelectionForm.style.display = "block";
+          resetAllVehicles();
           // Show all vehicles
           document.querySelectorAll(".vehicle-option").forEach((vehicle) => {
             vehicle.style.display = "block";
           });
         } else if (serviceName === "UK & Ireland Pallet Service") {
           palletServiceForm.style.display = "block";
-        } else if (serviceName === "UK Non-Standard Economy") {
-          vehicleSelectionForm.style.display = "block";
+        }else if (serviceName === "UK Non-Standard Economy") {
+  vehicleSelectionForm.style.display = "block";
+  resetAllVehicles();
 
-          // Get all vehicle options
-          const vehicles = document.querySelectorAll(".vehicle-option");
+  // Get all vehicle options
+  const vehicles = document.querySelectorAll(".vehicle-option");
 
-          // Hide all vehicles first
-          vehicles.forEach((vehicle) => {
-            vehicle.style.display = "none";
-          });
+  // Hide all vehicle parent containers first
+  vehicles.forEach((vehicle) => {
+    const col = vehicle.closest(".col-md-4, .col-md-6");
+    if (col) {
+      col.style.display = "none";
+      // Reset column classes
+      col.classList.remove("col-md-4", "col-md-6");
+      col.classList.add("col-md-6");
+    }
+  });
 
-          // Show only specific vehicles
-          vehicles.forEach((vehicle) => {
-            const vehicleName = vehicle
-              .querySelector(".vehicle-name")
-              .textContent.trim();
-            if (
-              [
-                "Small Van",
-                "Transit Van",
-                "LWB Transit",
-                "XLWB Transit",
-              ].includes(vehicleName)
-            ) {
-              vehicle.style.display = "block";
-            }
-          });
-        } else if (serviceName === "International Docs & Parcels") {
-          docsParcelForm.style.display = "block";
-        } else if (serviceName === "International Freight") {
-          // freightForm.style.display = 'block';
-        }
+  // Show only specific vehicles by showing their parent containers
+  vehicles.forEach((vehicle) => {
+    const vehicleName = vehicle
+      .querySelector(".vehicle-name")
+      .textContent.trim();
+    if (
+      [
+        "Small Van",
+        "Transit Van",
+        "LWB Transit",
+        "XLWB Transit",
+      ].includes(vehicleName)
+    ) {
+      const col = vehicle.closest(".col-md-4, .col-md-6");
+      if (col) {
+        col.style.display = "block";
+      }
+    }
+  });
+} else if (serviceName === "International Docs & Parcels") {
+  docsParcelForm.style.display = "block";
+} else if (serviceName === "International Freight") {
+  // freightForm.style.display = 'block';
+}
       }
     });
   });
 
   const palletServiceDetails = document.getElementById("palletServiceDetails");
+  function resetJourneyFormClasses() {
+  const journeyForm = document.getElementById('journeyDetailsForm1');
+  if (journeyForm) {
+    journeyForm.classList.remove('uk-non-standard-economy');
+  }
+}
+  // Add other elements here that might need resetting
+  // Example: const addDeliveryBtn = document.querySelector('[data-add-type="delivery"]');
+  // if (addDeliveryBtn) addDeliveryBtn.style.display = "block";
+
 
   serviceCards.forEach((card) => {
     card.addEventListener("click", function () {
@@ -1475,8 +1509,17 @@ document.addEventListener("DOMContentLoaded", function () {
         journeyDetailsForm1.style.display = "none";
       } else if (serviceName === "UK/EUROPE Time-Critical Courier") {
         journeyDetailsForm1.style.display = "block";
+        resetJourneyFormClasses();
       } else if (serviceName === "UK Non-Standard Economy") {
         journeyDetailsForm1.style.display = "block";
+        resetJourneyFormClasses();
+  
+  // Add class to enable conditional styling
+  const journeyForm = document.getElementById('journeyDetailsForm1');
+  if (journeyForm) {
+    journeyForm.classList.add('uk-non-standard-economy');
+  }
+
       } else {
         palletServiceDetails.style.display = "none";
         palletDetailsForm.style.display = "none";
