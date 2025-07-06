@@ -786,7 +786,7 @@ document.addEventListener("DOMContentLoaded", function () {
             type === "collection" ? collectionContainer : deliveryContainer;
         }
         const counter =
-          type === "collection" ? collectionCounter++ : deliveryCounter++;
+          type === "collection" ? collectionCounter++ : collectionCounter++;
 
         const formId = `${type}${counter}`;
         const newForm = document.createElement("div");
@@ -801,7 +801,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             </span>
                             <div class="d-flex justify-content-between align-items-center w-100">
                                 <div>
-                                    <small>Destination ${counter}:</small>
+                                    <small>Destination ${counter} [Post Code]</small>
                                 </div>
                                 <button class="collapse-icon btn p-0" type="button"
                                     data-bs-toggle="collapse"

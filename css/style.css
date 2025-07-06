@@ -47,7 +47,7 @@ body {
 /* Hero Section */
 .hero-section {
     background: url('../images/hero-image.png') no-repeat top center;
-    background-size: contain;
+    background-size: cover;
     padding: 20px 0;
     position: relative;
     min-width: 100%;
