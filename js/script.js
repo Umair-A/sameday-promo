@@ -12,9 +12,19 @@ document.addEventListener("DOMContentLoaded", function () {
   let collectionCounter = document.querySelectorAll(
     "#collectionContainer .collection-form"
   ).length;
+
   let deliveryCounter = document.querySelectorAll(
     "#deliveryContainer .collection-form"
   ).length;
+  
+  function updateCounters() {
+    collectionCounter = document.querySelectorAll(
+      "#collectionContainer .collection-form"
+    ).length;
+    deliveryCounter = document.querySelectorAll(
+      "#deliveryContainer .collection-form"
+    ).length;
+  }
 
   // Initialize Bootstrap components
   const tooltipTriggerList = [].slice.call(
@@ -25,6 +35,30 @@ document.addEventListener("DOMContentLoaded", function () {
       trigger: "hover focus",
     });
   });
+
+  // Function to check if device is mobile
+function isMobile() {
+    return window.innerWidth <= 768; // Bootstrap's md breakpoint
+}
+
+// Function to scroll to bottom of page
+function scrollToBottom() {
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    });
+}
+
+  serviceCards.forEach(card => {
+        card.addEventListener('click', function() {
+            if (isMobile()) {
+                // Small delay to ensure any other animations/changes complete first
+                setTimeout(() => {
+                    scrollToBottom();
+                }, 100);
+            }
+        });
+    });
 
   // Initialize Sortable for drag and drop
   if (collectionContainer) {
@@ -751,6 +785,7 @@ document.addEventListener("DOMContentLoaded", function () {
           form.remove();
           updateStopNumbers(container);
           updateDeleteButtonsState(container);
+          updateCounters(); // Adjust the counter when a form is removed
         }
       });
     }
@@ -760,6 +795,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const prev = form.previousElementSibling;
       if (prev) {
         form.parentNode.insertBefore(form, prev);
+        updateStopNumbers(form.parentNode);
       }
     });
 
@@ -768,8 +804,26 @@ document.addEventListener("DOMContentLoaded", function () {
       const next = form.nextElementSibling;
       if (next) {
         form.parentNode.insertBefore(next, form);
+        updateStopNumbers(form.parentNode);
       }
     });
+  }
+
+  // Function to get next counter number based on existing forms
+  function getNextCounterNumber(container) {
+    const existingForms = container.querySelectorAll(".collection-form");
+    return existingForms.length + 1;
+  }
+
+  // Function to get service-specific container
+  function getServiceSpecificContainer(button, type) {
+    // Try to find container within the closest col-md-6 first
+    let container = button.closest(".col-md-6")?.querySelector(`#${type}Container`);
+    if (!container) {
+      // fallback to global containers
+      container = type === "collection" ? collectionContainer : deliveryContainer;
+    }
+    return container;
   }
 
   // Add Collection/Delivery Point
@@ -777,21 +831,16 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".add-point-btn").forEach((button) => {
       button.addEventListener("click", function () {
         const type = this.getAttribute("data-add-type");
-        let container = this.closest(".col-md-6")?.querySelector(
-          `#${type}Container`
-        );
-        if (!container) {
-          // fallback to global if not found (for backward compatibility)
-          container =
-            type === "collection" ? collectionContainer : deliveryContainer;
-        }
-        const counter =
-          type === "collection" ? collectionCounter++ : collectionCounter++;
+        const container = getServiceSpecificContainer(this, type);
+        
+        // Get the next counter number based on existing forms
+        const counter = getNextCounterNumber(container);
 
         const formId = `${type}${counter}`;
         const newForm = document.createElement("div");
         newForm.className = "card collection-form mb-3";
         newForm.setAttribute("data-form-type", type);
+        // Don't mark dynamically created forms as initial
 
         newForm.innerHTML = `
                     <div class="card-header">
@@ -801,7 +850,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             </span>
                             <div class="d-flex justify-content-between align-items-center w-100">
                                 <div>
-                                    <small>Destination ${counter} [Post Code]</small>
+                                    <small>Destination ${counter}  [Post Code]</small>
                                 </div>
                                 <button class="collapse-icon btn p-0" type="button"
                                     data-bs-toggle="collapse"
@@ -905,6 +954,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setupFormEvents(newForm);
         updateDeleteButtonsState(container);
+        updateStopNumbers(container); // Update all destination numbers
+        updateCounters(); // Update counters after adding new form
       });
     });
   }
@@ -1097,6 +1148,21 @@ document.addEventListener("DOMContentLoaded", function () {
     // Reset form
     document.getElementById("quoteForm").reset();
 
+    // Reset all service forms
+    resetAllServiceForms();
+
+    // Remove selected class from all service cards
+    serviceCards.forEach((c) => {
+      c.classList.remove("selected");
+      const btn = c.querySelector(".select-btn");
+      const badge = c.querySelector(".selected-badge");
+      if (btn) btn.style.display = "block";
+      if (badge) badge.remove();
+    });
+
+    // Remove selected class from all vehicle options
+    vehicleOptions.forEach((opt) => opt.classList.remove("selected"));
+
     // Hide success page and show form
     document.getElementById("successPage").style.display = "none";
     document.querySelector(".multi-step-form").style.display = "block";
@@ -1177,13 +1243,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Function to update stop numbers after reordering
+  // Function to update destination numbers after reordering
   function updateStopNumbers(container) {
     const stops = container.querySelectorAll(".collection-form");
     stops.forEach((stop, index) => {
       const stopNumberEl = stop.querySelector("small");
       if (stopNumberEl) {
-        stopNumberEl.textContent = `Stop ${index + 1}:`;
+        // Check if this is an initial form with original text that should be preserved
+        const isInitialForm = stop.getAttribute('data-initial') === 'true';
+        const originalText = stop.getAttribute('data-original-text');
+        
+        if (isInitialForm && originalText) {
+          // Preserve the original text for initial forms
+          stopNumberEl.textContent = originalText;
+        } else {
+          // Use numbered destination format for dynamically added forms
+          stopNumberEl.textContent = `Destination ${index + 1}  [Post Code]`;
+        }
       }
     });
   }
@@ -1191,8 +1267,23 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize stop reordering
   setupStopReordering();
 
+  // Mark initial forms as initial to preserve them during clearing
+  function markInitialForms() {
+    document.querySelectorAll('.collection-form').forEach(form => {
+      form.setAttribute('data-initial', 'true');
+      
+      // Store the original text to preserve it during renumbering
+      const stopNumberEl = form.querySelector('small');
+      if (stopNumberEl) {
+        const originalText = stopNumberEl.textContent;
+        form.setAttribute('data-original-text', originalText);
+      }
+    });
+  }
+
   // Initialize all functionality
   function init() {
+    markInitialForms();
     setupCollapse();
     setupAddPointButtons();
     setupServiceCards();
@@ -1308,6 +1399,76 @@ document.addEventListener("DOMContentLoaded", function () {
     "palletCrateDetailsForm"
   );
 
+  // Function to reset all service-specific forms
+  function resetAllServiceForms() {
+    // Hide all service-specific detail forms
+    const formsToHide = [
+      "ukNonPalletServiceDetails",
+      "palletServiceDetails", 
+      "internationalDocsTarifDetails",
+      "internationalTariffServiceDetails",
+      "palletCrateDetailsForm",
+      "journeyDetailsForm",
+      "journeyDetailsForm1",
+      "docsParcelDetailsForm",
+      "internationalFreightForm",
+      "palletDetailsForm"
+    ];
+    
+    formsToHide.forEach(formId => {
+      const form = document.getElementById(formId);
+      if (form) {
+        form.style.display = "none";
+      }
+    });
+    
+    // Hide main service forms
+    if (vehicleSelectionForm) vehicleSelectionForm.style.display = "none";
+    if (palletServiceForm) palletServiceForm.style.display = "none";
+    if (docsParcelForm) docsParcelForm.style.display = "none";
+    if (freightForm) freightForm.style.display = "none";
+    
+    // Reset journey form classes and clear containers
+    resetJourneyFormClasses();
+    clearJourneyFormContainers();
+  }
+
+  // Function to reset journey form classes
+  function resetJourneyFormClasses() {
+    const journeyForm = document.getElementById('journeyDetailsForm1');
+    if (journeyForm) {
+      journeyForm.classList.remove('uk-non-standard-economy');
+    }
+  }
+
+  // Function to clear dynamically added forms but preserve initial forms
+  function clearJourneyFormContainers() {
+    const journeyForm = document.getElementById('journeyDetailsForm1');
+    if (journeyForm) {
+      // Find collection and delivery containers within this form
+      const collectionContainers = journeyForm.querySelectorAll('[id*="collection"][id*="Container"], [id="collectionContainer"]');
+      const deliveryContainers = journeyForm.querySelectorAll('[id*="delivery"][id*="Container"], [id="deliveryContainer"]');
+      
+      // Only remove dynamically added forms, preserve the initial form
+      collectionContainers.forEach(container => {
+        const dynamicForms = container.querySelectorAll('.collection-form:not([data-initial="true"])');
+        dynamicForms.forEach(form => form.remove());
+        // Update destination numbers for remaining forms
+        updateStopNumbers(container);
+      });
+      
+      deliveryContainers.forEach(container => {
+        const dynamicForms = container.querySelectorAll('.collection-form:not([data-initial="true"])');
+        dynamicForms.forEach(form => form.remove());
+        // Update destination numbers for remaining forms
+        updateStopNumbers(container);
+      });
+      
+      // Update global counters
+      updateCounters();
+    }
+  }
+
   // Handle service selection
   serviceCards.forEach((card) => {
     card.addEventListener("click", function () {
@@ -1319,25 +1480,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // Get the service name
       const serviceName = this.querySelector(".service-name").textContent;
 
-      // Hide all service-specific divs first
-      document.getElementById("ukNonPalletServiceDetails").style.display =
-        "none";
-      document.getElementById("palletServiceDetails").style.display = "none";
-      document.getElementById("internationalDocsTarifDetails").style.display =
-        "none";
-      document.getElementById(
-        "internationalTariffServiceDetails"
-      ).style.display = "none";
-      document.getElementById("palletCrateDetailsForm").style.display = "none";
-      document.getElementById("journeyDetailsForm").style.display = "none";
-      document.getElementById("docsParcelDetailsForm").style.display = "none";
-      document.getElementById("internationalFreightForm").style.display = "none";
-      // document.getElementById('palletCrateDetailsForm').style.display = 'none';
-
-      vehicleSelectionForm.style.display = "none";
-      palletServiceForm.style.display = "none";
-      docsParcelForm.style.display = "none";
-      freightForm.style.display = "none";
+      // Reset all forms first to ensure clean state
+      resetAllServiceForms();
 
       function resetAllVehicles() {
         const vehicles = document.querySelectorAll(".vehicle-option");
@@ -1352,52 +1496,83 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       };
 
+      // Get necessary form elements for step 3
+      const palletDetailsForm = document.getElementById("palletDetailsForm");
+      const journeyDetailsForm1 = document.getElementById("journeyDetailsForm1");
+      
       // Show relevant forms based on service selection
-      if (serviceName === "International Docs & Parcels") {
-        document.getElementById("internationalDocsTarifDetails").style.display =
-          "block";
-        docsParcelForm.style.display = "block";
-        docsParcelDetailsForm.style.display = "block";
-      } else if (serviceName === "UK Non-Standard Economy") {
-        document.getElementById("ukNonPalletServiceDetails").style.display =
-          "block";
-        document.getElementById("docsParcelDetailsForm").style.display = "none";
-        document.getElementById("palletDetailsForm").style.display = "none";
+      switch (serviceName) {
+        case "International Docs & Parcels":
+          document.getElementById("internationalDocsTarifDetails").style.display = "block";
+          docsParcelForm.style.display = "block";
+          docsParcelDetailsForm.style.display = "block";
+          break;
 
-        vehicleSelectionForm.style.display = "block";
-
-        // Show only specific vehicles
-        const vehicles = document.querySelectorAll(".vehicle-option");
-        vehicles.forEach((vehicle) => {
-          vehicle.style.display = "none";
-          const vehicleName = vehicle
-            .querySelector(".vehicle-name")
-            .textContent.trim();
-          if (
-            [
-              "Small Van",
-              "Transit Van",
-              "LWB Transit",
-              "XLWB Transit",
-            ].includes(vehicleName)
-          ) {
-            vehicle.style.display = "block";
+        case "UK Non-Standard Economy":
+          document.getElementById("ukNonPalletServiceDetails").style.display = "block";
+          vehicleSelectionForm.style.display = "block";
+          journeyDetailsForm1.style.display = "block";
+          resetJourneyFormClasses();
+          
+          // Add class for conditional styling
+          const journeyForm = document.getElementById('journeyDetailsForm1');
+          if (journeyForm) {
+            journeyForm.classList.add('uk-non-standard-economy');
           }
-        });
-      } else if (serviceName === "UK & Ireland Pallet Service") {
-        document.getElementById("palletServiceDetails").style.display = "block";
-        document.getElementById("docsParcelDetailsForm").style.display = "none";
 
-        palletServiceForm.style.display = "block";
-      } else if (serviceName === "International Freight") {
-        internationalTariffServiceDetails.style.display = "block";
-        internationalFreightForm.style.display = "block";
-        palletCrateDetailsForm.style.display = "block";
-      } else if (serviceName === "International On-Board Courier") {
-        journeyDetailsForm.style.display = "block";
-        docsParcelDetailsForm.style.display = "block";
-      } else if (serviceName === "UK/EUROPE Time-Critical Courier") {
-        document.getElementById("journeyDetailsForm").style.display = "none";
+          // Show only specific vehicles
+          const vehicles = document.querySelectorAll(".vehicle-option");
+          vehicles.forEach((vehicle) => {
+            const col = vehicle.closest(".col-md-4, .col-md-6");
+            if (col) {
+              col.style.display = "none";
+              col.classList.remove("col-md-4", "col-md-6");
+              col.classList.add("col-md-6");
+            }
+          });
+
+          vehicles.forEach((vehicle) => {
+            const vehicleName = vehicle.querySelector(".vehicle-name").textContent.trim();
+            if (["Small Van", "Transit Van", "LWB Transit", "XLWB Transit"].includes(vehicleName)) {
+              const col = vehicle.closest(".col-md-4, .col-md-6");
+              if (col) {
+                col.style.display = "block";
+              }
+            }
+          });
+          break;
+
+        case "UK & Ireland Pallet Service":
+          document.getElementById("palletServiceDetails").style.display = "block";
+          palletServiceForm.style.display = "block";
+          palletDetailsForm.style.display = "block";
+          break;
+
+        case "International Freight":
+          internationalTariffServiceDetails.style.display = "block";
+          document.getElementById("internationalFreightForm").style.display = "block";
+          palletCrateDetailsForm.style.display = "block";
+          break;
+
+        case "International On-Board Courier":
+          journeyDetailsForm.style.display = "block";
+          docsParcelDetailsForm.style.display = "block";
+          break;
+
+        case "UK/EUROPE Time-Critical Courier":
+          vehicleSelectionForm.style.display = "block";
+          journeyDetailsForm1.style.display = "block";
+          resetJourneyFormClasses();
+          resetAllVehicles();
+          
+          // Show all vehicles
+          document.querySelectorAll(".vehicle-option").forEach((vehicle) => {
+            vehicle.style.display = "block";
+          });
+          break;
+
+        default:
+          break;
       }
 
       // Enable the next button
@@ -1413,123 +1588,17 @@ document.addEventListener("DOMContentLoaded", function () {
         //     // Go directly to step 3
         //     goToStep(2);
         // }, { once: true }); // Use once:true to ensure the listener is removed after first use
-      } else {
-        // Show appropriate form in step 2
-        if (serviceName === "UK/EUROPE Time-Critical Courier") {
-          vehicleSelectionForm.style.display = "block";
-          resetAllVehicles();
-          // Show all vehicles
-          document.querySelectorAll(".vehicle-option").forEach((vehicle) => {
-            vehicle.style.display = "block";
-          });
-        } else if (serviceName === "UK & Ireland Pallet Service") {
-          palletServiceForm.style.display = "block";
-        }else if (serviceName === "UK Non-Standard Economy") {
-  vehicleSelectionForm.style.display = "block";
-  resetAllVehicles();
-
-  // Get all vehicle options
-  const vehicles = document.querySelectorAll(".vehicle-option");
-
-  // Hide all vehicle parent containers first
-  vehicles.forEach((vehicle) => {
-    const col = vehicle.closest(".col-md-4, .col-md-6");
-    if (col) {
-      col.style.display = "none";
-      // Reset column classes
-      col.classList.remove("col-md-4", "col-md-6");
-      col.classList.add("col-md-6");
-    }
-  });
-
-  // Show only specific vehicles by showing their parent containers
-  vehicles.forEach((vehicle) => {
-    const vehicleName = vehicle
-      .querySelector(".vehicle-name")
-      .textContent.trim();
-    if (
-      [
-        "Small Van",
-        "Transit Van",
-        "LWB Transit",
-        "XLWB Transit",
-      ].includes(vehicleName)
-    ) {
-      const col = vehicle.closest(".col-md-4, .col-md-6");
-      if (col) {
-        col.style.display = "block";
-      }
-    }
-  });
-} else if (serviceName === "International Docs & Parcels") {
-  docsParcelForm.style.display = "block";
-} else if (serviceName === "International Freight") {
-  // freightForm.style.display = 'block';
-}
       }
     });
   });
 
   const palletServiceDetails = document.getElementById("palletServiceDetails");
-  function resetJourneyFormClasses() {
-  const journeyForm = document.getElementById('journeyDetailsForm1');
-  if (journeyForm) {
-    journeyForm.classList.remove('uk-non-standard-economy');
-  }
-}
+  
   // Add other elements here that might need resetting
   // Example: const addDeliveryBtn = document.querySelector('[data-add-type="delivery"]');
   // if (addDeliveryBtn) addDeliveryBtn.style.display = "block";
 
 
-  serviceCards.forEach((card) => {
-    card.addEventListener("click", function () {
-      // Remove active class from all cards
-      serviceCards.forEach((c) => c.classList.remove("active"));
-
-      // Add active class to clicked card
-      this.classList.add("active");
-
-      // Check if the clicked card is UK & Ireland Pallet Service
-      const serviceName = this.querySelector(".service-name").textContent;
-      const palletDetailsForm = document.getElementById("palletDetailsForm");
-      const journeyDetailsForm = document.getElementById("journeyDetailsForm");
-      const journeyDetailsForm1 = document.getElementById(
-        "journeyDetailsForm1"
-      );
-
-      const internationalTariffServiceDetails = document.getElementById(
-        "internationalTariffServiceDetails"
-      );
-      if (serviceName === "UK & Ireland Pallet Service") {
-        palletServiceDetails.style.display = "block";
-        palletDetailsForm.style.display = "block";
-        journeyDetailsForm1.style.display = "none";
-      } else if (serviceName === "International Docs & Parcels") {
-        journeyDetailsForm1.style.display = "none";
-      } else if (serviceName === "UK/EUROPE Time-Critical Courier") {
-        journeyDetailsForm1.style.display = "block";
-        resetJourneyFormClasses();
-      } else if (serviceName === "UK Non-Standard Economy") {
-        journeyDetailsForm1.style.display = "block";
-        resetJourneyFormClasses();
-  
-  // Add class to enable conditional styling
-  const journeyForm = document.getElementById('journeyDetailsForm1');
-  if (journeyForm) {
-    journeyForm.classList.add('uk-non-standard-economy');
-  }
-
-      } else {
-        palletServiceDetails.style.display = "none";
-        palletDetailsForm.style.display = "none";
-        // journeyDetailsForm.style.display = 'block';
-      }
-
-      // Enable the next button when a service is selected
-      document.getElementById("nextBtn").disabled = false;
-    });
-  });
 
   // Get the tariff type select element
   const tariffTypeSelect = document.getElementById("tariff-type");
@@ -1657,7 +1726,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p class="mb-1"><strong>Tariff details</strong></p>
                         <p class="mb-1">For non-urgent items that exceed 50 kg.</p>
                         <p class="mb-1">Door-to-door service to European countries.</p>
-                        p class="mb-0">Consignments can include oversized or awkward freight.</p>
+                        <p class="mb-0">Consignments can include oversized or awkward freight.</p>
 
 
                     `;
