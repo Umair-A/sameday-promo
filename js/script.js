@@ -17,6 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
     "#deliveryContainer .collection-form"
   ).length;
   
+  // Global shared counter for all destinations (collection + delivery)
+  let globalDestinationCounter = 1;
+  
   function updateCounters() {
     collectionCounter = document.querySelectorAll(
       "#collectionContainer .collection-form"
@@ -24,6 +27,17 @@ document.addEventListener("DOMContentLoaded", function () {
     deliveryCounter = document.querySelectorAll(
       "#deliveryContainer .collection-form"
     ).length;
+  }
+  
+  // Function to get the next global destination number
+  function getNextGlobalDestinationNumber() {
+    globalDestinationCounter++;
+    return globalDestinationCounter;
+  }
+  
+  // Function to reset global counter (called when switching services)
+  function resetGlobalDestinationCounter() {
+    globalDestinationCounter = 1;
   }
 
   // Initialize Bootstrap components
@@ -783,7 +797,6 @@ function scrollToBottom() {
         // Only allow delete if there's more than one stop
         if (stops.length > 1) {
           form.remove();
-          updateStopNumbers(container);
           updateDeleteButtonsState(container);
           updateCounters(); // Adjust the counter when a form is removed
         }
@@ -795,7 +808,6 @@ function scrollToBottom() {
       const prev = form.previousElementSibling;
       if (prev) {
         form.parentNode.insertBefore(form, prev);
-        updateStopNumbers(form.parentNode);
       }
     });
 
@@ -804,7 +816,6 @@ function scrollToBottom() {
       const next = form.nextElementSibling;
       if (next) {
         form.parentNode.insertBefore(next, form);
-        updateStopNumbers(form.parentNode);
       }
     });
   }
@@ -833,24 +844,28 @@ function scrollToBottom() {
         const type = this.getAttribute("data-add-type");
         const container = getServiceSpecificContainer(this, type);
         
-        // Get the next counter number based on existing forms
-        const counter = getNextCounterNumber(container);
+        console.log('Button clicked for type:', type, 'container:', container);
+        
+        // Use global destination counter for consistent numbering
+        const destinationNumber = getNextGlobalDestinationNumber();
+        
+        console.log('Using destination number:', destinationNumber);
 
-        const formId = `${type}${counter}`;
+        const formId = `${type}${destinationNumber}`;
         const newForm = document.createElement("div");
         newForm.className = "card collection-form mb-3";
         newForm.setAttribute("data-form-type", type);
         // Don't mark dynamically created forms as initial
 
         newForm.innerHTML = `
-                    <div class="card-header">
-                        <div class="d-flex align-items-center w-100 mb-2">
-                            <span class="drag-handle me-1">
-                                <i class="bi bi-grip-vertical"></i>
-                            </span>
-                            <div class="d-flex justify-content-between align-items-center w-100">
-                                <div>
-                                    <small>Destination ${counter}  [Post Code]</small>
+                    \u003cdiv class="card-header"\u003e
+                        \u003cdiv class="d-flex align-items-center w-100 mb-2"\u003e
+                            \u003cspan class="drag-handle me-1"\u003e
+                                \u003ci class="bi bi-grip-vertical"\u003e\u003c/i\u003e
+                            \u003c/span\u003e
+                            \u003cdiv class="d-flex justify-content-between align-items-center w-100"\u003e
+                                \u003cdiv\u003e
+                                    \u003csmall\u003eDestination ${destinationNumber}  [Post Code]\u003c/small\u003e
                                 </div>
                                 <button class="collapse-icon btn p-0" type="button"
                                     data-bs-toggle="collapse"
@@ -954,7 +969,6 @@ function scrollToBottom() {
 
         setupFormEvents(newForm);
         updateDeleteButtonsState(container);
-        updateStopNumbers(container); // Update all destination numbers
         updateCounters(); // Update counters after adding new form
       });
     });
@@ -1150,6 +1164,9 @@ function scrollToBottom() {
 
     // Reset all service forms
     resetAllServiceForms();
+    
+    // Reset global destination counter
+    resetGlobalDestinationCounter();
 
     // Remove selected class from all service cards
     serviceCards.forEach((c) => {
@@ -1269,6 +1286,8 @@ function scrollToBottom() {
 
   // Mark initial forms as initial to preserve them during clearing
   function markInitialForms() {
+    let maxDestinationNumber = 0;
+    
     document.querySelectorAll('.collection-form').forEach(form => {
       form.setAttribute('data-initial', 'true');
       
@@ -1277,8 +1296,19 @@ function scrollToBottom() {
       if (stopNumberEl) {
         const originalText = stopNumberEl.textContent;
         form.setAttribute('data-original-text', originalText);
+        
+        // Extract destination number from text like "Destination 1 [Post Code]"
+        const match = originalText.match(/Destination (\d+)/);
+        if (match) {
+          const destNumber = parseInt(match[1]);
+          maxDestinationNumber = Math.max(maxDestinationNumber, destNumber);
+        }
       }
     });
+    
+    // Set global counter to start after the highest existing destination number
+    globalDestinationCounter = maxDestinationNumber;
+    console.log('Initial global counter set to:', globalDestinationCounter, 'based on max destination:', maxDestinationNumber);
   }
 
   // Initialize all functionality
@@ -1431,6 +1461,9 @@ function scrollToBottom() {
     // Reset journey form classes and clear containers
     resetJourneyFormClasses();
     clearJourneyFormContainers();
+    
+    // Reset global destination counter for new service
+    resetGlobalDestinationCounter();
   }
 
   // Function to reset journey form classes
